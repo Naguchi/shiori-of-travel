@@ -1,0 +1,17 @@
+body {
+	background-image: url("../library/img/kaby.jpg")
+    	background-color: #c0ffee;  
+}
+.session_name {
+}
+.session_master {
+	float: left
+}
+
+.roleplay_mon {
+}
+.roleplay_talk {
+	overflow: scroll;
+	margin: 5px;
+	height: 3em;
+}

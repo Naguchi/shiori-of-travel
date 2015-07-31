@@ -9,6 +9,7 @@
 
 
 <?php
+/*
   $host = "localhost";
   $user = "naguchi";
   $password = "pass";
@@ -21,7 +22,7 @@
   $result = mysqli_query( $conn, $query );
   $row = mysqli_fetch_array( $result );
   print "<h1>". $row['title'] ."</h1>";
-
+*/
 ?>
 
 </div><!-- class=title_mon -->

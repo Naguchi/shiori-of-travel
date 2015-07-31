@@ -58,7 +58,7 @@
  		<select name="gasoline_value" onchange="onGasolineValue( value )">
 			<?
 			// ガソリン価格を150から190まで5++で
-			for( $i=150; $i<=190; $i+=5 ){ print "<option value=".$i.">".$i."円</option>"; }
+			for( $i=130; $i<=190; $i+=5 ){ print "<option value=".$i.">".$i."円</option>"; }
 			// なお、デフォルトは175円の模様
  			print "<option value='175' selected>175円</option>";
 			?>

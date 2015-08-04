@@ -77,7 +77,6 @@ for( $i='0.9'; $i<='1.5'; $i+='0.1' ){ ?>
 	</td>
 </tr>
 </table>
-<?php var_dump($_GET['distance_error']);?>
 </form>
 </fieldset>
 

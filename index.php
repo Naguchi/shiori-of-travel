@@ -1,4 +1,4 @@
-<?php require_once( '/var/www/shiori-of-travel/library/header.php' ); ?>
+<?php require_once( './library/header.php' ); ?>
 
 <div class="frame">
 

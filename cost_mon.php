@@ -1,4 +1,4 @@
-<?php require_once( '/var/www/shiori-of-travel/library/header.php' ); ?>
+<?php require_once( $bh ); ?>
 
 <fieldset><legend>参加人数</legend>
 <form name="member" onsubmit="return false;">
@@ -7,10 +7,10 @@
     <th>参加人数</th>
 	<td>
  		<select name="member" onchange="onMember( value )">
-			<?
-			// 参加者として20人分を表示
-			for( $i=1; $i<=20; $i++ ){ print "<option value=".$i.">".$i."人</option>"; }
-			?>
+<?  // 参加者として20人分を表示
+for( $i=1; $i<=20; $i++ ){ ?>
+            <option value="<?php print $i; ?>"<?php if(isset($_GET['member']) && $_GET['member'] == $i) print 'selected' ?>><?php print $i; ?>人</option>
+<?php } ?>
  		</select>
 	</td>
 </tr>
@@ -28,7 +28,7 @@
 <tr>
 	<th>車両レンタル料</th>
 	<td>
-		<input type="text" id="car" onkeyup="onCar( value );">
+		<input type="text" id="car" value="<? if(isset($_GET['car'])) print $_GET['car'] ?>" onkeyup="onCar( value );">
 	</td>
 </tr>
 </table>
@@ -43,12 +43,10 @@
 	<th>燃費</th>
 	<td>
  		<select name="fuel_efficiency" onchange="onFuelEfficiency( value )">
-			<?
-			// 燃費を6から40まで2++で
-			for( $i=5; $i<=40; $i+=5 ){ print "<option value=".$i.">".$i."km/L</option>"; }
-			// デフォルトは10km/Lなんだなあこれが
-			print "<option value='10' selected>10km/L</option>";
-			?>
+<?  // 燃費を6から40まで1++で
+for( $i=5; $i<=40; $i++ ){ ?>
+            <option value="<?php print $i; ?>"<?php if(isset($_GET['fuel_efficiency']) && $_GET['fuel_efficiency'] == $i) print 'selected' ?>><?php print $i; ?>km/L</option>
+<?php } ?>
  		</select>
 	</td>
 </tr>
@@ -56,12 +54,10 @@
 	<th>ガソリン価格</th>
 	<td>
  		<select name="gasoline_value" onchange="onGasolineValue( value )">
-			<?
-			// ガソリン価格を150から190まで5++で
-			for( $i=130; $i<=190; $i+=5 ){ print "<option value=".$i.">".$i."円</option>"; }
-			// なお、デフォルトは175円の模様
- 			print "<option value='175' selected>175円</option>";
-			?>
+<?  // ガソリン価格を150から190まで5++で
+for( $i=130; $i<=190; $i+=5 ){ ?>
+            <option value="<?php print $i; ?>"<?php if(isset($_GET['gasoline_value']) && $_GET['gasoline_value'] == $i) print 'selected'; ?>><?php print $i; ?>円</option>
+<?php } ?>
  		</select>
 	</td>
 </trii>
@@ -70,19 +66,18 @@
 </tr>
 <tr>
 	<th>片道距離<th>
-	<input type="text" id="distance" onkeyup="onDistance( value );">
+	<input type="text" id="distance" value="<?php if(isset($_GET['distance'])) print $_GET['distance']; ?>" onkeyup="onDistance( value );">
 	<td>
 		<select name="distance_error" onchange="onDistance( document.gasoline_cost.distance.value )">
-			<?
-			// 距離バッファの値。0.9倍から1.5倍まで
-			for( $i='0.9'; $i<='1.5'; $i+='0.1' ){ print "<option value=".$i.">× " .$i."km</option>"; }
-			// デフォルトは1.3倍やで
- 			print "<option value='1.3' selected>× 1.3km</option>";
-			?>
+<?  // 距離バッファの値。0.9倍から1.5倍まで
+for( $i='0.9'; $i<='1.5'; $i+='0.1' ){ ?>
+            <option value="<?php print $i ?>"<?php if(isset($_GET['distance_error']) && $_GET['distance_error'] == $i) print $_GET['distance_error']; ?>>× <?php print $i; ?>km</option>
+<?php } ?>
 		</select>
 	</td>
 </tr>
 </table>
+<?php var_dump($_GET['distance_error']);?>
 </form>
 </fieldset>
 

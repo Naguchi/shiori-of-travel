@@ -13,6 +13,7 @@ for( $i=1; $i<=20; $i++ ){ ?>
 <?php } ?>
  		</select>
 	</td>
+    <td>(member)</td>
 </tr>
 </table>
 </form>
@@ -30,6 +31,7 @@ for( $i=1; $i<=20; $i++ ){ ?>
 	<td>
 		<input type="text" id="car" value="<? if(isset($_GET['car'])) print $_GET['car'] ?>" onkeyup="onCar( value );">
 	</td>
+    <td>(car)</td>
 </tr>
 </table>
 </form>
@@ -49,6 +51,7 @@ for( $i=5; $i<=40; $i++ ){ ?>
 <?php } ?>
  		</select>
 	</td>
+    <td>(fuel_efficiency)</td>
 </tr>
 <tr>
 	<th>ガソリン価格</th>
@@ -60,21 +63,31 @@ for( $i=130; $i<=190; $i+=5 ){ ?>
 <?php } ?>
  		</select>
 	</td>
+    <td>(gasoline_value)</td>
 </trii>
 <tr>
 <a target="_blank" href="https://maps.google.co.jp">距離計算サイト(Googleマップ)</a>
 </tr>
 <tr>
-	<th>片道距離<th>
-	<input type="text" id="distance" value="<?php if(isset($_GET['distance'])) print $_GET['distance']; ?>" onkeyup="onDistance( value );">
+	<th>片道距離</th>
+    <td>
+	    <input type="text" id="distance" value="<?php if(isset($_GET['distance'])) print $_GET['distance']; ?>" onkeyup="onDistance( value );">
+    </td>
+    <td>(distance)</td>
+</tr>
+<tr>
+    <th>誤差</th>
 	<td>
 		<select name="distance_error" onchange="onDistance( document.gasoline_cost.distance.value )">
 <?  // 距離バッファの値。0.9倍から1.5倍まで
 for( $i='0.9'; $i<='1.5'; $i+='0.1' ){ ?>
-            <option value="<?php print $i ?>"<?php if(isset($_GET['distance_error']) && $_GET['distance_error'] == $i) print $_GET['distance_error']; ?>>× <?php print $i; ?>km</option>
+            <option value="<?php print $i ?>" <?php if(isset($_GET['distance_error']) && $_GET['distance_error'] == $i) print 'selected'; ?>>× <?php print $i; ?>km</option>
 <?php } ?>
 		</select>
 	</td>
+    <td>(distance_error)</td>
+<?php if($_GET['distance_error'] == '1.3') print 'selected'; ?>
+<?php print $_GET['distance_error']; ?>
 </tr>
 </table>
 </form>
@@ -90,8 +103,9 @@ for( $i='0.9'; $i<='1.5'; $i+='0.1' ){ ?>
 <tr>
 	<th>割有片道料金</th>
 	<td>
-		<input type="text" id="highway" onkeyup="onHighway( value );">
+		<input type="text" id="highway" value="<?php if(isset($_GET['highway'])) print $_GET['highway']; ?>" onkeyup="onHighway( value );">
 	</td>
+    <td>(highway)</td>
 </tr>
 </table>
 </form>
@@ -151,6 +165,7 @@ for( $i='0.9'; $i<='1.5'; $i+='0.1' ){ ?>
 	<div id="display_split_cost"></div>
 </table>
 </fieldset>
+<input type="button" value="URL発行">
 
 <script type="text/javascript"><!--
 function onMember( value ){

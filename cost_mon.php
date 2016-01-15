@@ -25,7 +25,7 @@ for( $i=1; $i<=20; $i++ ){ ?>
 <table>
 <tr>
 	<a target="_blank" href="http://www.2525r.com">レンタカー予約サイト(ニコニコレンタカー)</a>
-</tr
+</tr>
 <tr>
 	<th>車両レンタル料</th>
 	<td>

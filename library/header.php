@@ -14,7 +14,8 @@
     <meta http-equiv="Content-Type"        content="text/html; charset=UTF-8" >
     <meta http-equiv="Content-Style-Type"  content="text/css;  charset=UTF-8" >
     <meta http-equiv="Content-Script-Type" content="text/javascript; charset=UTF-8" />
-<link rel="stylesheet" href="/shiori-of-travel/library/css/import.css"  type="text/css" >
+    <link rel="stylesheet" href="/shiori-of-travel/library/css/import.css"  type="text/css" >
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 <body>
 

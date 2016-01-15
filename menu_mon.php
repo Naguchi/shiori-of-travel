@@ -4,7 +4,8 @@
 $items = array(
 	'基本情報' => 'profile_mon',
 	'旅費計算' => 'cost_mon',
-	'スケジュール' => 'schedule_mon'
+	'スケジュール' => 'schedule_mon',
+	'給油距離' => 'mileage_mon'
 );
 
 

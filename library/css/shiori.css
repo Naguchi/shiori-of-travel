@@ -1,11 +1,10 @@
 body {
-	background-image: url("../library/img/kaby.jpg")
-    	background-color: #c0ffee;  
+   	background-color: #c0ffee;
 }
 .session_name {
 }
 .session_master {
-	float: left
+	float: left;
 }
 
 .roleplay_mon {

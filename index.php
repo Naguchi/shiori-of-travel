@@ -29,9 +29,10 @@
 
 <!--
 <div class="right"> </div>
--->
+<!--
 <div class="bottom">
-	<?php require( $bd.'preference_mon.php' ); ?>
+	<?php// require( $bd.'preference_mon.php' ); ?>
+-->
 </div> <!-- class="bottom" -->
 
 </div><!-- class="frame" -->

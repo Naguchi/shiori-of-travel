@@ -86,8 +86,6 @@ for( $i='0.9'; $i<='1.5'; $i+='0.1' ){ ?>
 		</select>
 	</td>
     <td>(distance_error)</td>
-<?php if($_GET['distance_error'] == '1.3') print 'selected'; ?>
-<?php print $_GET['distance_error']; ?>
 </tr>
 </table>
 </form>

@@ -57,8 +57,8 @@ for( $i=5; $i<=40; $i++ ){ ?>
 	<th>ガソリン価格</th>
 	<td>
  		<select name="gasoline_value" onchange="onGasolineValue( value )">
-<?  // ガソリン価格を150から190まで5++で
-for( $i=130; $i<=190; $i+=5 ){ ?>
+<?  // ガソリン価格を80から190まで5++で
+for( $i=80; $i<=190; $i+=5 ){ ?>
             <option value="<?php print $i; ?>"<?php if(isset($_GET['gasoline_value']) && $_GET['gasoline_value'] == $i) print 'selected'; ?>><?php print $i; ?>円</option>
 <?php } ?>
  		</select>

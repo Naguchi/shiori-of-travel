@@ -1,20 +1,30 @@
 <?php
 
-global $host, $user, $password, $database, $conn;
+global $host, $user, $password, $database, $link;
 
-$host = "localhost";
-$user = "naguchi";
-$password = "pass";
-$database = "shiori";
-$conn = mysqli_connect( $host, $user, $password, $database );
+$user = 'root';
+$password = 'root';
+/*
+$user = 'naguchi';
+$password = 'ickikazuki';
+*/
+$db = 'shiori';
+$host = 'localhost';
+$port = 3306;
+$link = mysqli_connect(
+	$host,
+	$user,
+	$password,
+	$db
+);
 
+if (!$link) {
+	echo "Error: Unable to connect to MySQL." . PHP_EOL;
+	die( "Debugging error: " . mysqli_connect_error() );
+}
+//echo "Success: Mysql Connection OK." . PHP_EOL;
 
-
-$query = "SELECT * FROM travel_tbl";
-$result = mysqli_query( $conn, $query );
-$row = mysqli_fetch_array( $result );
-echo $row['title'];
-
+mysqli_set_charset($link, "UTF8");
 
 /* 接続を閉じます */
 //$mysqli_close( $mysqli );

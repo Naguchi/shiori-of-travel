@@ -5,8 +5,10 @@ require_once('../library/sql/connect.php');
 
 $query = 'SELECT * FROM plan';
 $result = mysqli_query( $link, $query );
-$row = mysqli_fetch_array( $result );
 
-echo json_encode($row);
+$planList = array();
+while ($row = mysqli_fetch_assoc($result)) {
+	array_push($planList, $row);
+}
 
-//echo json_encode($_POST);
+echo json_encode($planList);

@@ -7,20 +7,38 @@ $params = $_POST;
 $planId = $params['planId'];
 $return = array();
 
-$query = 'SELECT * FROM plan WHERE id = ' . $planId;
+$query = 'SELECT * FROM `plan` WHERE `id` = ' . $planId;
 $result = mysqli_query( $link, $query );
-
 $return['planInfo'] = mysqli_fetch_assoc($result);
 
-$query = 'SELECT name, attendance_id FROM member LEFT JOIN plan_member ON member.id = plan_member.member_id';
-$query.= ' WHERE plan_member.plan_id = ' . $planId;
+$query = 'SELECT `name`,`attendance_id`';
+$query.= 'FROM `member`';
+$query.= 'LEFT JOIN `plan_member` ON `member`.`id`=`plan_member`.`member_id`';
+$query.= 'LEFT JOIN `attendance` ON `plan_member`.`attendance_id`=`attendance`.`id`';
+$query.= 'WHERE `plan_member`.`plan_id`="' . $planId . '"';
+$query.= 'ORDER BY `attendance`.`rank` ASC,`member`.`id` ASC';
 $memberList = array();
 $result = mysqli_query( $link, $query );
 while ($row = mysqli_fetch_assoc($result)) {
 	array_push($memberList, $row);
 }
-
 $return['memberList'] = $memberList;
+
+$query = '
+SELECT `schedule`.*
+FROM `schedule`
+LEFT JOIN `plan` ON `schedule`.`plan_id` = `plan`.`id`
+WHERE `plan`.`id` = ' . $planId . '
+ORDER BY `schedule`.`departure_date` ASC, `schedule`.`departure_time` ASC
+';
+$scheduleList = array();
+$result = mysqli_query( $link, $query );
+while ($row = mysqli_fetch_assoc($result)) {
+	array_push($scheduleList, $row);
+}
+$return['scheduleList'] = $scheduleList;
+
+
 $return['success'] = true;
 
 echo json_encode($return);

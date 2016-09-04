@@ -40,4 +40,6 @@ $result = mysqli_query($link, $query);
 
 $return['success'] = $result;
 
+$return['plan_id'] = mysqli_insert_id($link);
+
 echo json_encode($return);

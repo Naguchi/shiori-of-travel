@@ -4,12 +4,21 @@ header("Content-Type: application/json; charset=utf-8");
 require_once('../library/sql/connect.php');
 
 $params = $_POST;
-$planId = $params['planId'];
+$plannerId = $params['planner_id'];
+$planId = $params['plan_id'];
 $return = array();
 
-$query = 'SELECT * FROM `plan` WHERE `id` = ' . $planId;
+$query = 'SELECT * FROM `plan` WHERE `id` = ' . $planId . ' AND `planner_id` = ' . $plannerId;
 $result = mysqli_query( $link, $query );
-$return['planInfo'] = mysqli_fetch_assoc($result);
+$planInfo = mysqli_fetch_assoc($result);
+
+if (count($planInfo) == 0) {
+	$return['success'] = false;
+	echo json_encode($return);
+	exit;
+}
+
+$return['planInfo'] = $planInfo;
 
 $query = 'SELECT `name`,`attendance_id`';
 $query.= 'FROM `member`';
@@ -37,7 +46,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 	array_push($scheduleList, $row);
 }
 $return['scheduleList'] = $scheduleList;
-
 
 $return['success'] = true;
 

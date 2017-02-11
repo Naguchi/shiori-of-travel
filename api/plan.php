@@ -38,7 +38,7 @@ SELECT `schedule`.*
 FROM `schedule`
 LEFT JOIN `plan` ON `schedule`.`plan_id` = `plan`.`id`
 WHERE `plan`.`id` = ' . $planId . '
-ORDER BY `schedule`.`departure_date` ASC, `schedule`.`departure_time` ASC
+ORDER BY `schedule`.`meeting_date` ASC, `schedule`.`meeting_time` ASC
 ';
 $scheduleList = array();
 $result = mysqli_query( $link, $query );

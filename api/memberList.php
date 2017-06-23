@@ -10,6 +10,8 @@ $plannerId = $params['planner_id'];
 
 if (empty($plannerId)) {
 	$return['success'] = false;
+	$return['message'] = "プランナーIDがありません。";
+	$return['params'] = $params;
 	echo json_encode($return);
 	exit;
 }

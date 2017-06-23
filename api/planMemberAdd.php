@@ -6,22 +6,33 @@ require_once('../library/sql/connect.php');
 $params = $_POST;
 $return = array();
 
-$plan_id = $params['plan_id'];
-$memberList = explode(',',$params['member']);
+$planId = $params['plan_id'];
+$memberId = $params['member_id'];
+$attendanceId = $params['attendance_id'];
 
-if (empty($plan_id)) {
+if (empty($planId)) {
 	$return['success'] = false;
+	$return['message'] = "プランIDがありません。";
 	echo json_encode($return);
 	exit;
 }
 
-foreach ($memberList as $member) {
-	$query = 'INSERT INTO `plan_member`(`plan_id`,`member_id`,`attendance_id`)';
-	$query.= 'VALUES("' . $plan_id . '","'. $member['id'] .'",0)';
-
-	$result = mysqli_query($link, $query);
+if (empty($attendanceId)) {
+	$return['success'] = false;
+	$return['message'] = "出欠情報がありません。";
+	echo json_encode($return);
+	exit;
 }
 
-$return['success'] = $result;
+$query = 'INSERT INTO `plan_member`(`plan_id`,`member_id`,`attendance_id`)';
+$query.= 'VALUES("' . $planId . '","'. $memberId .'","'.$attendanceId.'")';
 
+if (! mysqli_query($link, $query)){
+	$return['success'] = false;
+	$return['message'] = "DB登録が失敗しました。";
+	echo json_encode($return);
+	exit;
+}
+
+$return['success'] = true;
 echo json_encode($return);

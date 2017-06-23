@@ -6,19 +6,27 @@ require_once('../library/sql/connect.php');
 $params = $_POST;
 $return = array();
 
+$planner_id = $params['planner_id'];
+if (empty($planner_id)) {
+	$return['success'] = false;
+	$return['params'] = $params;
+	$return['message'] = 'プランIDがありません。';
+	echo json_encode($return);
+	exit;
+}
 $title = $params['title'];
+if (empty($title)) {
+	$return['success'] = false;
+	$return['message'] = 'タイトルが入力されていません。';
+	echo json_encode($return);
+	exit;
+}
 $summary = $params['summary'];
 $start = $params['start'];
 $end = $params['end'];
 
-if (empty($title)) {
-	$return['success'] = false;
-	echo json_encode($return);
-	exit;
-}
-
-$query1 = 'INSERT INTO `plan` (`title`';
-$query2 = 'VALUES ("' . $title . '"';
+$query1 = 'INSERT INTO `plan` (`planner_id`, `title`';
+$query2 = 'VALUES ("' . $planner_id . '", "' . $title . '"';
 
 if (! empty($summary)) {
 	$query1 .= ', `summary`';
